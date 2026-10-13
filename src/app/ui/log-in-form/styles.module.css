@@ -1,0 +1,22 @@
+.input {
+  height: 30px;
+  width: 300px;
+  border: 1px solid #ccc;
+}
+
+.loginFormContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button {
+  height: 30px;
+  width: 300px;
+  margin-top: 10px;
+}

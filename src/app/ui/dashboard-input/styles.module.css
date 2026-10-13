@@ -1,0 +1,52 @@
+.input {
+  height: 30px;
+  width: 300px;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 5px;
+}
+
+.select {
+  height: 30px;
+  width: 300px;
+  border: 1px solid #ccc;
+  outline: none;
+  color: #646464;
+}
+
+.dashboardInput {
+  display: flex;
+  flex-direction: column;
+  color: #efefef;
+  border: 1px solid #ccc;
+  width: 350px;
+  padding: 20px;
+}
+
+.option {
+  color: #646464;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button {
+  height: 30px;
+  width: 300px;
+  margin-top: 10px;
+  border: none;
+  color: #f7f7f7;
+  background-color: rgb(201, 2, 2);
+}
+
+.button:active {
+  background-color: rgb(114, 2, 2);
+}

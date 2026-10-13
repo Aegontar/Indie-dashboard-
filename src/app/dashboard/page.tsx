@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import styles from "./styles.module.css";
+/* import styles from "./styles.module.css"; */
+import DashboardInput from "../ui/dashboard-input/dashboardInput";
+
+/* import { use } from "react"; */
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -7,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function Dashboard() {
-  return <main>Dashboard</main>;
+  return (
+    <main>
+      <p>Dashboard</p>
+      <DashboardInput />
+    </main>
+  );
 }
