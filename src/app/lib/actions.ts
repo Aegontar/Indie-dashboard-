@@ -28,6 +28,11 @@ const GameSchema = z.object({
 const CreateGame = GameSchema.omit({ id: true });
 
 export async function createGame(formData: FormData) {
+  console.log(
+    "Checking DB URL at runtime:",
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+  );
+
   const { gameId, gameName, genre } = CreateGame.parse({
     gameId: uuidv4(),
     gameName: formData.get("gameName"),
@@ -35,8 +40,10 @@ export async function createGame(formData: FormData) {
   });
 
   // Insert data into the database
+
   try {
     await sql`
+
     INSERT INTO games (game_id, game_name, genre)
     VALUES (${gameId}, ${gameName}, ${genre})
   `;
@@ -52,11 +59,9 @@ export async function createGame(formData: FormData) {
     throw error;
   }
  */
-  /*   revalidatePath("/dashboard/");
-  redirect("/dashboard/"); */
+  revalidatePath("/dashboard/");
+  redirect("/dashboard/");
 
-  /*
-   */
   /*       customerId,
     gameName: formData.get("gameName"),
     genre: formData.get("genre"),
