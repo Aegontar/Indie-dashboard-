@@ -1,0 +1,8 @@
+.editingOn {
+  display: flex;
+  flex-direction: column;
+}
+
+.editingOff {
+  display: none;
+}

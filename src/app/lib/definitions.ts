@@ -3,8 +3,8 @@
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 
-export type Game = {
+export type Games = {
   id: string;
-  name: string;
+  game_name: string;
   genre: string;
 };

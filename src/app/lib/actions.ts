@@ -3,6 +3,7 @@ import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
 import postgres from "postgres";
 import { revalidatePath } from "next/dist/server/web/spec-extension/revalidate";
+import type { Games } from "./definitions";
 import { redirect } from "next/navigation";
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -10,21 +11,9 @@ const GameSchema = z.object({
   id: z.string(),
   gameId: z.string(),
   gameName: z.coerce.string(),
-  /*   status: z.enum(["pending", "paid"]), */
   genre: z.string(),
 });
 
-/* const customerId = uuidv4(); */
-
-/* export type State = {
-  errors?: {
-    customerId?: string[];
-    amount?: string[];
-    status?: string[];
-  };
-  message?: string | null;
-};
- */
 const CreateGame = GameSchema.omit({ id: true });
 
 export async function createGame(formData: FormData) {
@@ -52,24 +41,23 @@ export async function createGame(formData: FormData) {
     console.error("Database error:", error);
   }
 
-  /*   try {
-
-  } catch (error) {
-    error.cause = { nextNoDigest: true, originalCause: error.cause };
-    throw error;
-  }
- */
   revalidatePath("/dashboard/");
   redirect("/dashboard/");
-
-  /*       customerId,
-    gameName: formData.get("gameName"),
-    genre: formData.get("genre"),
- */
-  // Test it out:
-  /*   console.log(`form data`, rawFormData); */
 }
 
-/*       id: string;
-  name: string;
-  genre: string; */
+export async function deleteGame(id: string) {
+  await sql`DELETE FROM games WHERE id = ${id}`;
+  revalidatePath("/dashboard/games");
+}
+
+const fetchGames = async () => {
+  try {
+    const data = await sql<Games[]>`SELECT * FROM games`;
+    return data;
+  } catch (error) {
+    console.error("Database error:", error);
+    throw error;
+  }
+};
+
+export default fetchGames;
