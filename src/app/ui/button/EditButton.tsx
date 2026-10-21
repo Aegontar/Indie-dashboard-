@@ -14,12 +14,10 @@ const EditButton = ({
   onClick: () => void;
 }) => {
   return (
-    console.log(`activeId`, activeId),
-    (
-      <button onClick={onClick}>
-        {activeId === index ? "✏️ Edit" : "💾 Save"}
-      </button>
-    )
+    /*    console.log(`activeId`, activeId), */
+    <button onClick={onClick}>
+      {activeId === index ? "💾 Save" : "✏️ Edit"}
+    </button>
   );
 };
 

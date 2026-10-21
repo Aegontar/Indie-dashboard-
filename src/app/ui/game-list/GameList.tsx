@@ -10,20 +10,22 @@ const GameList = ({
 }: {
   games: Array<{ id: string; game_name: string; genre: string }>;
 }) => {
-  const [editingStatus, setEditingStatus] = useState(false);
+  /*   const [editingStatus, setEditingStatus] = useState(false); */
 
   const [activeId, setActiveId] = useState(null as number | null);
+  const [currentGameName, setCurrentGameName] = useState(null as string | null);
 
   const handleToggle = (index: number) => {
     // If clicked again, close it. Otherwise, open the clicked ID.
     setActiveId(index === activeId ? null : index);
+    /*     setEditingStatus(!editingStatus); */
     /*     console.log(`activeId`, activeId); */
   };
 
-  useEffect(() => {
-    /*     console.log(`editingStatus`, activeId); */
-  }, [activeId]);
-
+  /*   useEffect(() => {
+    console.log(`Current Game Name`, currentGameName); 
+  }, [currentGameName]);
+ */
   return (
     <div className="game-list">
       {games.map((game, index) => (
@@ -37,7 +39,10 @@ const GameList = ({
               key={index}
               activeId={activeId}
               index={index}
-              onClick={() => handleToggle(index)}
+              onClick={() => {
+                handleToggle(index);
+                setCurrentGameName(game.game_name);
+              }}
               /*    handleToggle={handleToggle} */
             />
             {/*        <button
@@ -51,7 +56,12 @@ const GameList = ({
           </div>
         </div>
       ))}
-      {editingStatus && <EditGameLayout editingStatus={editingStatus} />}
+      {activeId !== null && (
+        <EditGameLayout
+          key={currentGameName}
+          gameName={currentGameName || ""}
+        />
+      )}
     </div>
   );
 };

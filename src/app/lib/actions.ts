@@ -45,6 +45,35 @@ export async function createGame(formData: FormData) {
   redirect("/dashboard/");
 }
 
+export async function updateGame(formData: FormData) {
+  console.log(
+    "Checking DB URL at runtime:",
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+  );
+
+  const { gameId, gameName, genre } = CreateGame.parse({
+    gameId: uuidv4(),
+    gameName: formData.get("gameName"),
+    genre: formData.get("genre"),
+  });
+
+  // Insert data into the database
+
+  try {
+    await sql`
+
+    INSERT INTO games (game_id, game_name, genre)
+    VALUES (${gameId}, ${gameName}, ${genre})
+  `;
+  } catch (error) {
+    // If a database error occurs, return a more specific error.
+    console.error("Database error:", error);
+  }
+
+  revalidatePath("/dashboard/");
+  redirect("/dashboard/");
+}
+
 export async function deleteGame(id: string) {
   await sql`DELETE FROM games WHERE id = ${id}`;
   revalidatePath("/dashboard/games");
