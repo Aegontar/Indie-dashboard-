@@ -4,7 +4,8 @@
 // However, these types are generated automatically if you're using an ORM such as Prisma.
 
 export type Games = {
-  id: string;
+  id: number;
+  gameId: string;
   game_name: string;
   genre: string;
 };

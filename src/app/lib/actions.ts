@@ -5,6 +5,7 @@ import postgres from "postgres";
 import { revalidatePath } from "next/dist/server/web/spec-extension/revalidate";
 import type { Games } from "./definitions";
 import { redirect } from "next/navigation";
+import { id } from "zod/locales";
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 const GameSchema = z.object({
@@ -45,25 +46,32 @@ export async function createGame(formData: FormData) {
   redirect("/dashboard/");
 }
 
+const UpdateGame = GameSchema.omit({ id: true });
+
 export async function updateGame(formData: FormData) {
   console.log(
     "Checking DB URL at runtime:",
     process.env.NEXT_PUBLIC_SUPABASE_URL,
   );
 
-  const { gameId, gameName, genre } = CreateGame.parse({
-    gameId: uuidv4(),
+  const { gameId, gameName, genre } = UpdateGame.parse({
+    gameId: formData.get("gameId"),
     gameName: formData.get("gameName"),
     genre: formData.get("genre"),
   });
 
   // Insert data into the database
 
+  console.log(
+    `Updating game with ID: ${gameId}, Name: ${gameName}, Genre: ${genre}`,
+  );
+
   try {
     await sql`
 
-    INSERT INTO games (game_id, game_name, genre)
-    VALUES (${gameId}, ${gameName}, ${genre})
+    UPDATE games
+      SET   game_id = ${gameId}, game_name = ${gameName}, genre = ${genre}
+      WHERE game_id = ${gameId}
   `;
   } catch (error) {
     // If a database error occurs, return a more specific error.
@@ -74,8 +82,8 @@ export async function updateGame(formData: FormData) {
   redirect("/dashboard/");
 }
 
-export async function deleteGame(id: string) {
-  await sql`DELETE FROM games WHERE id = ${id}`;
+export async function deleteGame(gameId: string) {
+  await sql`DELETE FROM games WHERE game_id = ${gameId}`;
   revalidatePath("/dashboard/games");
 }
 
