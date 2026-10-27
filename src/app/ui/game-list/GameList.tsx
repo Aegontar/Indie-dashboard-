@@ -24,14 +24,7 @@ const GameList = ({
   const handleToggle = (index: number) => {
     // If clicked again, close it. Otherwise, open the clicked ID.
     setActiveId(index === activeId ? null : index);
-    /*     setEditingStatus(!editingStatus); */
-    /*     console.log(`activeId`, activeId); */
   };
-
-  /*   useEffect(() => {
-    console.log(`Current Game Name`, currentGameName); 
-  }, [currentGameName]);
- */
 
   console.log(`clicked game id`, currentGameId);
 
@@ -53,16 +46,7 @@ const GameList = ({
                 setCurrentGameName(game.game_name);
                 setCurrentGameId(game.game_id);
               }}
-              /*    handleToggle={handleToggle} */
             />
-            {/*        <button
-              key={game.id}
-              onClick={() => setEditingStatus(!editingStatus)}
-            >
-        
-            </button> */}
-
-            {/* {activeId === index ? "Save" : "Edit"} */}
           </div>
         </div>
       ))}

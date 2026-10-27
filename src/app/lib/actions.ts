@@ -5,7 +5,6 @@ import postgres from "postgres";
 import { revalidatePath } from "next/dist/server/web/spec-extension/revalidate";
 import type { Games } from "./definitions";
 import { redirect } from "next/navigation";
-import { id } from "zod/locales";
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 const GameSchema = z.object({

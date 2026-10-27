@@ -1,18 +1,9 @@
 "use client";
-import { useState } from "react";
+
 import styles from "./styles.module.css";
 import { createGame } from "../../lib/actions";
 
 const DashboardInput = () => {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [selectGameName, setSelectedGameName] = useState("");
-
-  /*   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("Selected Option:", selectedOption);
-    console.log("Game Name:", selectGameName);
-  }; */
-
   return (
     <>
       <form className={styles.dashboardInput} action={createGame}>
@@ -21,19 +12,12 @@ const DashboardInput = () => {
           className={styles.input}
           type="text"
           placeholder="Insert the name of your game"
-          value={selectGameName}
-          onChange={(e) => setSelectedGameName(e.target.value)}
           name="gameName"
         />
 
         <label className={styles.label}>
           Choose a genre:
-          <select
-            className={styles.select}
-            value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-            name="genre"
-          >
+          <select className={styles.select} name="genre">
             <option className={styles.option} value="rts">
               Real-Time Strategy
             </option>
@@ -58,15 +42,6 @@ const DashboardInput = () => {
           Add Game
         </button>
       </form>
-
-      {/*       <div id="customer-error" aria-live="polite" aria-atomic="true">
-        {state.errors?.customerId &&
-          state.errors.customerId.map((error: string) => (
-            <p className="mt-2 text-sm text-red-500" key={error}>
-              {error}
-            </p>
-          ))}
-      </div> */}
     </>
   );
 };
