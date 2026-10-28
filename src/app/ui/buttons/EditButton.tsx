@@ -1,9 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 const EditButton = ({
-  gameId,
   activeId,
   index,
   onClick,

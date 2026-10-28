@@ -10,6 +10,7 @@ type EditGameLayoutProps = {
   gameName: string;
   genre: string;
   id: number;
+  setActiveId: React.Dispatch<React.SetStateAction<number | null>>;
 };
 
 const EditGameLayout = (props: EditGameLayoutProps) => {
@@ -52,6 +53,10 @@ const EditGameLayout = (props: EditGameLayoutProps) => {
       <input type="hidden" name="gameId" defaultValue={props.gameId || ""} />
       <input type="hidden" name="id" defaultValue={props.id || ""} />
       <button type="submit">Save Changes</button>
+      <button type="button" onClick={() => props.setActiveId(null)}>
+        {" "}
+        Cancel editing
+      </button>
     </form>
   );
 };

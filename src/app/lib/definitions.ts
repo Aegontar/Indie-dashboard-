@@ -5,7 +5,7 @@
 
 export type Games = {
   id: number;
-  gameId: string;
+  game_id: string;
   game_name: string;
   genre: string;
 };

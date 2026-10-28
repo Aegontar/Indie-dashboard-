@@ -1,9 +1,10 @@
 "use client";
 import styles from "./styles.module.css";
-import DeleteButton from "../button/DeleteButton";
-import EditButton from "../button/EditButton";
+import DeleteButton from "../buttons/DeleteButton";
+import EditButton from "../buttons/EditButton";
 import EditGameLayout from "../edit-game-layout/EditGameLayout";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import CancelEditButton from "../buttons/CancelEditButton";
 
 const GameList = ({
   games,
@@ -26,7 +27,7 @@ const GameList = ({
     setActiveId(index === activeId ? null : index);
   };
 
-  console.log(`clicked game id`, currentGameId);
+  console.log(`active game id`, activeId);
 
   return (
     <div className="game-list">
@@ -57,8 +58,14 @@ const GameList = ({
           gameId={currentGameId || ""}
           genre={games[activeId].genre}
           id={games[activeId].id}
+          setActiveId={setActiveId}
         />
       )}
+      {/*     <CancelEditButton
+        onClick={() => {
+          setActiveId(null);
+        }}
+      /> */}
     </div>
   );
 };
