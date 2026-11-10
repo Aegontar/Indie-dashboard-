@@ -10,3 +10,7 @@
   background-color: #ac2d2d;
 }
  */
+.active {
+  background-color: rgba(189, 49, 49, 0.7);
+  color: white; /* Text remains 100% opaque */
+}

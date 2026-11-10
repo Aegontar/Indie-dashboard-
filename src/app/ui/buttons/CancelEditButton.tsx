@@ -12,7 +12,9 @@ const CancelEditButton = ({
 }) => {
   return (
     /*    console.log(`activeId`, activeId), */
-    <button onClick={onClick}>Cancel</button>
+    <button className="button" onClick={onClick}>
+      Cancel
+    </button>
   );
 };
 

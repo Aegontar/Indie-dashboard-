@@ -9,3 +9,8 @@ export type Games = {
   game_name: string;
   genre: string;
 };
+
+export type User = {
+  email: string;
+  id: number;
+};

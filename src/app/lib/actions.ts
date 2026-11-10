@@ -96,4 +96,14 @@ const fetchGames = async () => {
   }
 };
 
+export async function fetchGameById(id: number) {
+  try {
+    const data = await sql<Games[]>`SELECT * FROM games where id = ${id}`;
+    return data;
+  } catch (error) {
+    console.error("Database error:", error);
+    throw error;
+  }
+}
+
 export default fetchGames;
