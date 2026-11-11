@@ -1,2 +1,14 @@
-.dashboardPageContainer {
+.mainContent {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .sideBar { */
+/*   display: flex;
+  flex-direction: column; */
+/* } */
+
+.pageContainer {
+  display: flex;
+  flex-direction: row;
 }

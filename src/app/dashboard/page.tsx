@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import DashboardInput from "../ui/dashboard-input/dashboardInput";
 import GameList from "../ui/game-list/GameList";
 import fetchGames from ".././lib/actions";
-import DashboardNavBar from "../ui/dashboard-nav-bar/DashboardNavBar";
+import GameNavBar from "../ui/game-nav-bar/GameNavBar";
+import style from "./styles.module.css";
 
 /* import { use } from "react"; */
 
@@ -17,10 +18,15 @@ export default async function Dashboard() {
   console.log(`list of your games`, games);
   return (
     <main>
-      <p>Dashboard</p>
-      <DashboardInput />
-      <DashboardNavBar games={games} />
-      <GameList games={games} />
+      <div className={style.pageContainer}>
+        <div className={style.sideBar}>
+          <GameNavBar games={games} />
+        </div>
+        <div className={style.mainContent}>
+          <DashboardInput />
+          <GameList games={games} />
+        </div>
+      </div>
     </main>
   );
 }

@@ -1,0 +1,9 @@
+.dashboardNavBar {
+  display: flex;
+  flex-direction: column;
+}
+
+.gameNavBar {
+  display: flex;
+  flex-direction: column;
+}
